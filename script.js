@@ -1,6 +1,8 @@
 const canvas = document.getElementById("gameCanvas");
 const canvasContext = canvas.getContext('2d');
-let snakeXPosition = 0;
+let snakeXPosition = 60;
+let snakeYPosition = 290;
+let snakePixelsMoved =  20;
 
 
 
@@ -12,7 +14,7 @@ function drawCanvas() {
 
 function drawSnake() {
     canvasContext.fillStyle = 'Red';
-    canvasContext.fillRect(snakeXPosition, 290, 20, 20);
+    canvasContext.fillRect(snakeXPosition, snakeYPosition, 20, 20);
 }
 
 function drawApple() {
@@ -21,7 +23,7 @@ function drawApple() {
 }
 
 function moveSnake() {
-    snakeXPosition = snakeXPosition + 20;
+    snakeXPosition = snakeXPosition + snakePixelsMoved;
 }
 
 
