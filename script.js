@@ -2,10 +2,8 @@ const canvas = document.getElementById("gameCanvas");
 const canvasContext = canvas.getContext('2d');
 let snakeXPosition = 60;
 let snakeYPosition = 290;
-let snakePixelsMoved =  4;
-
-
-
+let snakePixelsMovedX =  4;
+let snakePixelsMovedY = 0;
 
 function drawCanvas() {
     canvasContext.fillStyle = 'black';
@@ -22,9 +20,27 @@ function drawApple() {
     canvasContext.fillRect(490, 290, 20, 20)
 }
 
+function moveSnake() {
+    snakeXPosition = snakeXPosition + snakePixelsMovedX;
+    snakeYPosition = snakeYPosition + snakePixelsMovedY;
+}
+
 document.addEventListener('keydown', function(event) {
+    if (event.keyCode === 37) {
+        snakePixelsMovedX = -4;
+        snakePixelsMovedY = 0;
+    }
     if (event.keyCode === 39) {
-    snakeXPosition = snakeXPosition + snakePixelsMoved;
+        snakePixelsMovedX = 4;
+        snakePixelsMovedY = 0;
+    }
+    if (event.keyCode === 38) {
+        snakePixelsMovedX = 0;
+        snakePixelsMovedY = -4;
+    }
+    if (event.keyCode === 40) {
+        snakePixelsMovedX = 0;
+        snakePixelsMovedY = 4;
     }
 });
 
