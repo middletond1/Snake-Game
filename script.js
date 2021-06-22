@@ -15,9 +15,17 @@ function drawSnake() {
     canvasContext.fillRect(snakeXPosition, snakeYPosition, 20, 20);
 }
 
+function randomXPosition() {
+    return Math.floor(Math.random()*40)*20;
+}
+
+function randomYPosition() {
+    return Math.floor(Math.random()*30)*20;
+}
+
 function drawApple() {
     canvasContext.fillStyle = 'Blue';
-    canvasContext.fillRect(480, 280, 20, 20)
+    canvasContext.fillRect(randomXPosition(), randomYPosition(), 20, 20)
 }
 
 function moveSnake() {
@@ -63,4 +71,5 @@ setInterval(() => {
     moveSnake();
     gameOver()
     drawSnake();
+    randomXPosition()
 }, 1000/2);
