@@ -1,7 +1,10 @@
 const canvas = document.getElementById("gameCanvas");
 const canvasContext = canvas.getContext('2d');
-let snakeXPosition = 60;
-let snakeYPosition = 280;
+let snakeBody = [
+    {x: 60, y: 280},
+    {x: 40, y: 280},
+    {x: 20, y: 280}
+]
 let snakePixelsMovedX =  20;
 let snakePixelsMovedY = 0;
 let appleXPosition = randomXPosition();
@@ -13,8 +16,10 @@ function drawCanvas() {
 };
 
 function drawSnake() {
-    canvasContext.fillStyle = 'Red';
-    canvasContext.fillRect(snakeXPosition, snakeYPosition, 20, 20);
+    snakeBody.forEach(snakeLink => {
+        canvasContext.fillStyle = 'Red';
+        canvasContext.fillRect(snakeLink.x, snakeLink.y, 20, 20);
+    });
 }
 
 function randomXPosition() {
@@ -26,7 +31,7 @@ function randomYPosition() {
 }
 
 function hasSnakeTouchedApple() {
-    if (snakeXPosition === appleXPosition && snakeYPosition === appleYPosition) {
+    if (snakeBody[0].x === appleXPosition && snakeBody[0].y === appleYPosition) {
         return true;
     } return false;
 }
@@ -44,12 +49,12 @@ function drawApple() {
 }
 
 function moveSnake() {
-    snakeXPosition = snakeXPosition + snakePixelsMovedX;
-    snakeYPosition = snakeYPosition + snakePixelsMovedY;
+    snakeBody[0].x = snakeBody[0].x + snakePixelsMovedX;
+    snakeBody[0].y = snakeBody[0].y + snakePixelsMovedY;
 }
 
 function gameOverCondition() {
-    if (snakeXPosition < 0 || snakeXPosition === canvas.width || snakeYPosition < 0 || snakeYPosition === canvas.height) {
+    if (snakeBody[0].x < 0 || snakeBody[0].x === canvas.width || snakeBody[0].y < 0 || snakeBody[0].y === canvas.height) {
         return true;
     } 
     return false;
