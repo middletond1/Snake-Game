@@ -76,9 +76,9 @@ document.addEventListener('keydown', function(event) {
 
 setInterval(() => {
     drawCanvas();
+    moveSnake();
     changeApplePosition();
     drawApple();
-    moveSnake();
     gameOver()
     drawSnake();
 }, 1000/2);
