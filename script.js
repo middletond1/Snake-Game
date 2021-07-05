@@ -4,6 +4,8 @@ let snakeXPosition = 60;
 let snakeYPosition = 280;
 let snakePixelsMovedX =  20;
 let snakePixelsMovedY = 0;
+let appleXPosition = randomXPosition();
+let appleYPosition = randomYPosition();
 
 function drawCanvas() {
     canvasContext.fillStyle = 'black';
@@ -25,7 +27,7 @@ function randomYPosition() {
 
 function drawApple() {
     canvasContext.fillStyle = 'Blue';
-    canvasContext.fillRect(randomXPosition(), randomYPosition(), 20, 20)
+    canvasContext.fillRect(appleXPosition, appleYPosition, 20, 20)
 }
 
 function moveSnake() {
