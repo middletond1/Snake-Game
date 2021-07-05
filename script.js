@@ -25,6 +25,13 @@ function randomYPosition() {
     return Math.floor(Math.random()*30)*20;
 }
 
+function changeApplePosition() {
+    if (snakeXPosition === appleXPosition && snakeYPosition === appleYPosition) {
+        appleXPosition = randomXPosition();
+        appleYPosition = randomYPosition();
+    }   
+}
+
 function drawApple() {
     canvasContext.fillStyle = 'Blue';
     canvasContext.fillRect(appleXPosition, appleYPosition, 20, 20)
@@ -69,9 +76,9 @@ document.addEventListener('keydown', function(event) {
 
 setInterval(() => {
     drawCanvas();
+    changeApplePosition();
     drawApple();
     moveSnake();
     gameOver()
     drawSnake();
-    randomXPosition()
 }, 1000/2);
