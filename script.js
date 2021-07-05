@@ -25,8 +25,14 @@ function randomYPosition() {
     return Math.floor(Math.random()*30)*20;
 }
 
-function changeApplePosition() {
+function hasSnakeTouchedApple() {
     if (snakeXPosition === appleXPosition && snakeYPosition === appleYPosition) {
+        return true;
+    } return false;
+}
+
+function changeApplePosition() {
+    if (hasSnakeTouchedApple()) {
         appleXPosition = randomXPosition();
         appleYPosition = randomYPosition();
     }   
