@@ -53,7 +53,7 @@ function drawApple() {
     canvasContext.fillRect(appleXPosition, appleYPosition, 20, 20)
 }
 
-function moveSnakeHead() {
+function moveSnake() {
     snakeBody[0].x = snakeBody[0].x + snakePixelsMovedX;
     snakeBody[0].y = snakeBody[0].y + snakePixelsMovedY;
     for (let i = 0; i < snakeBody.length; i++) {
@@ -106,7 +106,7 @@ document.addEventListener('keydown', function(event) {
 
 setInterval(() => {
     drawCanvas();
-    moveSnakeHead();
+    moveSnake();
     changeApplePosition();
     gameOver();
     drawApple();
