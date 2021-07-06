@@ -5,6 +5,11 @@ let snakeBody = [
     {x: 40, y: 280},
     {x: 20, y: 280}
 ]
+let snakeBodyCopy = [
+    {x: 60, y: 280},
+    {x: 40, y: 280},
+    {x: 20, y: 280}
+]
 let snakePixelsMovedX =  20;
 let snakePixelsMovedY = 0;
 let appleXPosition = randomXPosition();
@@ -16,9 +21,9 @@ function drawCanvas() {
 };
 
 function drawSnake() {
-    snakeBody.forEach(snakeLink => {
+    snakeBody.forEach(snakePart => {
         canvasContext.fillStyle = 'Red';
-        canvasContext.fillRect(snakeLink.x, snakeLink.y, 20, 20);
+        canvasContext.fillRect(snakePart.x, snakePart.y, 20, 20);
     });
 }
 
@@ -48,9 +53,23 @@ function drawApple() {
     canvasContext.fillRect(appleXPosition, appleYPosition, 20, 20)
 }
 
-function moveSnake() {
+function moveSnakeHead() {
     snakeBody[0].x = snakeBody[0].x + snakePixelsMovedX;
     snakeBody[0].y = snakeBody[0].y + snakePixelsMovedY;
+    for (let i = 0; i < snakeBody.length; i++) {
+        if (i === 0) {
+            continue;
+        }
+        snakeBody[i].x = snakeBodyCopy[i - 1].x;
+        snakeBody[i].y = snakeBodyCopy[i - 1].y;
+    };
+}
+
+function updateSnakeBodyCopy() {
+    for (let i = 0; i < snakeBodyCopy.length; i++) {
+        snakeBodyCopy[i].x = snakeBody[i].x;
+        snakeBodyCopy[i].y = snakeBody[i].y;
+    };
 }
 
 function gameOverCondition() {
@@ -87,9 +106,10 @@ document.addEventListener('keydown', function(event) {
 
 setInterval(() => {
     drawCanvas();
-    moveSnake();
+    moveSnakeHead();
     changeApplePosition();
+    gameOver();
     drawApple();
-    gameOver()
     drawSnake();
+    updateSnakeBodyCopy();
 }, 1000/2);
