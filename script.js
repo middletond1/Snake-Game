@@ -87,18 +87,30 @@ function gameOver() {
 
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 37) {
+        if (snakePixelsMovedX === 20) {
+            return;
+        }
         snakePixelsMovedX = -20;
         snakePixelsMovedY = 0;
     }
     if (event.keyCode === 39) {
+        if (snakePixelsMovedX === -20) {
+            return;
+        }
         snakePixelsMovedX = 20;
         snakePixelsMovedY = 0;
     }
     if (event.keyCode === 38) {
+        if (snakePixelsMovedY === 20) {
+            return;
+        }
         snakePixelsMovedX = 0;
         snakePixelsMovedY = -20;
     }
     if (event.keyCode === 40) {
+        if (snakePixelsMovedY === -20) {
+            return;
+        }
         snakePixelsMovedX = 0;
         snakePixelsMovedY = 20;
     }
@@ -112,4 +124,4 @@ setInterval(() => {
     drawApple();
     drawSnake();
     updateSnakeBodyCopy();
-}, 1000/2);
+}, 1000/3);
