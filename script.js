@@ -41,6 +41,14 @@ function hasSnakeTouchedApple() {
     } return false;
 }
 
+function addSquareToSnake() {
+    if (hasSnakeTouchedApple()) {
+        let newSquare = {x: snakeBody[snakeBody.length - 1].x, y: snakeBody[snakeBody.length - 1].y};
+        snakeBody.push(newSquare);
+        snakeBodyCopy.push(newSquare);
+    }
+}
+
 function changeApplePosition() {
     if (hasSnakeTouchedApple()) {
         appleXPosition = randomXPosition();
@@ -56,10 +64,7 @@ function drawApple() {
 function moveSnake() {
     snakeBody[0].x = snakeBody[0].x + snakePixelsMovedX;
     snakeBody[0].y = snakeBody[0].y + snakePixelsMovedY;
-    for (let i = 0; i < snakeBody.length; i++) {
-        if (i === 0) {
-            continue;
-        }
+    for (let i = 1; i < snakeBody.length; i++) {
         snakeBody[i].x = snakeBodyCopy[i - 1].x;
         snakeBody[i].y = snakeBodyCopy[i - 1].y;
     };
@@ -119,9 +124,12 @@ document.addEventListener('keydown', function(event) {
 setInterval(() => {
     drawCanvas();
     moveSnake();
+    addSquareToSnake();
     changeApplePosition();
     gameOver();
+    updateSnakeBodyCopy();
     drawApple();
     drawSnake();
-    updateSnakeBodyCopy();
+    console.log(JSON.stringify(snakeBody));
+    console.log(JSON.stringify(snakeBodyCopy));
 }, 1000/3);
